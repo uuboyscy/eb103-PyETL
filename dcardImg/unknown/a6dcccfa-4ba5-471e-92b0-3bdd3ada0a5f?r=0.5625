@@ -1,0 +1,84 @@
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="點我看影片" >
+  <title>a6dcccfa-4ba5-471e-92b0-3bdd3ada0a5f</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+  <link href="https://vjs.zencdn.net/6.2.7/video-js.css" rel="stylesheet">
+</head>
+<body style="height: 100%; width: 100%; background-color: #e6e6e6; overflow: hidden;">
+  <div style="height: 100%; width: 100%">
+    <video id="dc_player"  class="video-js vjs-default-skin vjs-big-play-centered" poster="https://vivid.dcard.tw/Public/a6dcccfa-4ba5-471e-92b0-3bdd3ada0a5f/thumbnail.jpg" webkit-playsinline playsinline controls preload="metadata" data-setup="{}" style="height: 100%; width: 100%; font-size: 16px">
+      <source src="https://vivid.dcard.tw/Public/a6dcccfa-4ba5-471e-92b0-3bdd3ada0a5f/source" type='video/mp4'>
+    </video>
+  </div>
+  <script src="https://vjs.zencdn.net/6.2.7/video.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-27831574-6', 'auto');
+    ga('send', 'pageview', {page: '/videos/a6dcccfa-4ba5-471e-92b0-3bdd3ada0a5f'});
+  </script>
+  <script>
+    var player = videojs('dc_player');
+    var videoID = 'a6dcccfa-4ba5-471e-92b0-3bdd3ada0a5f';
+
+    function handleFullScreen() {
+      if (player.isFullscreen()) {
+        ga('send', 'event', {
+          'eventCategory': 'Video',
+          'eventAction': 'fullscreen',
+          'eventLabel': videoID
+        });
+      }
+    }
+
+    function handlePlay() {
+      ga('send', 'event', {
+        'eventCategory': 'Video',
+        'eventAction': 'play',
+        'eventLabel': videoID
+      });
+    }
+
+    function handlePause() {
+      ga('send', 'event', {
+        'eventCategory': 'Video',
+        'eventAction': 'pause',
+        'eventLabel': videoID
+      });
+    }
+
+    function handleEnded() {
+      ga('send', 'event', {
+        'eventCategory': 'Video',
+        'eventAction': 'end',
+        'eventLabel': videoID
+      });
+    }
+
+    var lastClick = 0;
+    function handleClick() {
+      var now = new Date().getTime();
+      var isDoubleClick = now - lastClick < 500;
+
+      if (isDoubleClick && player.isFullscreen()) {
+        document.querySelector('.vjs-fullscreen-control').click();
+      }
+
+      lastClick = now;
+    }
+
+    player.on('play', handlePlay);
+    player.on('pause', handlePause);
+    player.on('ended', handleEnded);
+    player.on('fullscreenchange', handleFullScreen);
+    player.on('click', handleClick);
+  </script>
+</body>
+</html>
